@@ -14,10 +14,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return view('conduit_home_Unauthenticated');
+// 未認証home
+Route::get('/guest', function () {
+    return view('conduit_home_guest');
 });
+
+// 認証済みhome(認証未設定)
+Route::get('/', function () {
+    return view('conduit_home');
+});
+
+// 記事ページ
+Route::get('/article', function () {
+    return view('conduit_article');
+});
+
+// 記事作成・編集ページ
+Route::get('/editor', function () {
+    return view('conduit_editor');
+});
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
