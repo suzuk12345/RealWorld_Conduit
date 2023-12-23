@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ConduitArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,17 @@ Route::get('/guest', function () {
 });
 
 // 認証済みhome(認証未設定)
-Route::get('/', function () {
-    return view('conduit_home');
+Route::prefix('conduit')
+->name('conduit.')
+->controller(ConduitArticleController::class)
+->group(function () {
+    Route::get('/', 'home')->name('home');
+    Route::post('/', 'store')->name('store');
+    Route::get('/article/article{id}', 'article')->name('article'); // 引数あり
+    Route::get('/editor', 'editor')->name('editor'); // 引数なし
+    Route::get('/editor/article{id}', 'editor')->name('editor'); // 引数あり
+    Route::post('/', 'update')->name('update');
+    Route::get('/article/article{id}', 'destroy')->name('destroy');
 });
 
 // 記事ページ

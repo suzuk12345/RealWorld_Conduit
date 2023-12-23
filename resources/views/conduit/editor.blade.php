@@ -6,7 +6,9 @@
   <title>Conduit</title>
   <!-- Import Ionicon icons & Google Fonts our Bootstrap theme relies on -->
   <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-  <link href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css" />
+  <link
+    href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic"
+    rel="stylesheet" type="text/css" />
   <!-- Import the custom Bootstrap 4 theme from our hosted CDN -->
   <link rel="stylesheet" href="//demo.productionready.io/main.css" />
 </head>
@@ -20,6 +22,7 @@
         <!-- Add "active" class when you're on that page" -->
         <a class="nav-link active" href="/">Home</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="/editor"> <i class="ion-compose"></i>&nbsp;New Article </a>
       </li>
@@ -54,11 +57,7 @@
               <input type="text" class="form-control" placeholder="What's this article about?" />
             </fieldset>
             <fieldset class="form-group">
-              <textarea
-                class="form-control"
-                rows="8"
-                placeholder="Write your article (in markdown)"
-              ></textarea>
+              <textarea class="form-control" rows="8" placeholder="Write your article (in markdown)"></textarea>
             </fieldset>
             <fieldset class="form-group">
               <input type="text" class="form-control" placeholder="Enter tags" />
