@@ -9,18 +9,18 @@ class ConduitArticleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function home()
+    public function index()
     {
-        //
+        return view('conduit.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    // public function create()
-    // {
-    //     //
-    // }
+    public function editorNew()
+    {
+        return view('conduit.editor');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -33,7 +33,7 @@ class ConduitArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function article(string $id)
+    public function show(string $id)
     {
         //
     }
@@ -41,7 +41,7 @@ class ConduitArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function editor(string $id = '')
+    public function editorExisting(string $id = '')
     {
         //
     }

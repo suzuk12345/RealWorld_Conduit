@@ -16,7 +16,7 @@
 <!-- header -->
 <nav class="navbar navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="{{ route('conduit.index')}}">conduit</a>
+    <a class="navbar-brand" href="/">conduit</a>
     <ul class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
         <!-- Add "active" class when you're on that page" -->
