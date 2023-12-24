@@ -46,7 +46,34 @@
         <ul class="error-messages">
           <!-- <li>That title is required</li> -->
         </ul>
-
+        @isset($article)
+        <form method="post" action="{{ route('conduit.update', ['id' => $article->id]) }}">
+          @csrf
+          <fieldset>
+            <fieldset class="form-group">
+              <input type="text" name="title" id="title" class="form-control form-control-lg"
+                placeholder="Article Title" value="{{ $article->title }}" />
+            </fieldset>
+            <fieldset class="form-group">
+              <input type="text" name="description" id="description" class="form-control"
+                placeholder="What's this article about?" value="{{ $article->description }}" />
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea name="body" id="body" class="form-control" rows="16"
+                placeholder="Write your article (in markdown)">{{ $article->body }}</textarea>
+            </fieldset>
+            <!-- <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="Enter tags" />
+              <div class="tag-list">
+                <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
+              </div>
+            </fieldset> -->
+            <button class="btn btn-lg pull-xs-right btn-primary" type="submit">
+              Update Article
+            </button>
+          </fieldset>
+        </form>
+        @else
         <form method="post" action="{{ route('conduit.store') }}">
           @csrf
           <fieldset>
@@ -73,6 +100,7 @@
             </button>
           </fieldset>
         </form>
+        @endif
       </div>
     </div>
   </div>

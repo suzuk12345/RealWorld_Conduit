@@ -54,7 +54,7 @@ class ConduitArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function editorExisting(string $id = '')
+    public function editorExisting(string $id)
     {
         $article = ConduitArticle::find($id);
 
@@ -66,7 +66,15 @@ class ConduitArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $article = ConduitArticle::find($id);
+
+        $article->title = $request->title;
+        $article->description = $request->description;
+        $article->body = $request->body;
+
+        $article->save();
+
+        return to_route('conduit.index');
     }
 
     /**

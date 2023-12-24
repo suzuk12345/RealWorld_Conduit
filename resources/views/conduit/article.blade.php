@@ -59,9 +59,12 @@
           <i class="ion-heart"></i>
           &nbsp; Favorite Post <span class="counter">(29)</span>
         </button> -->
-        <button class="btn btn-sm btn-outline-secondary">
+
+        <button class="btn btn-sm btn-outline-secondary"
+          onclick="location.href='{{ route('conduit.editorExisting', ['id' => $article->id]) }}'">
           <i class="ion-edit"></i> Edit Article
         </button>
+
         <button class="btn btn-sm btn-outline-danger">
           <i class="ion-trash-a"></i> Delete Article
         </button>
@@ -99,7 +102,8 @@
           <i class="ion-heart"></i>
           &nbsp; Favorite Article <span class="counter">(29)</span>
         </button> -->
-        <button class="btn btn-sm btn-outline-secondary">
+        <button class="btn btn-sm btn-outline-secondary"
+          onclick="location.href='{{ route('conduit.editorExisting', ['id' => $article->id]) }}'">
           <i class="ion-edit"></i> Edit Article
         </button>
         <button class="btn btn-sm btn-outline-danger">
