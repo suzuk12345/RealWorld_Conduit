@@ -30,20 +30,9 @@ Route::prefix('conduit')
     Route::post('/', 'store')->name('store'); // 記事投稿
     // Route::get('/editor/article{id}', 'editorExisting')->name('editorExisting'); // 記事編集
     // Route::post('/editor/article{id}', 'update')->name('update'); // 記事修正登録
-    // Route::get('/article/article{id}', 'article')->name('article'); // 記事閲覧
+    Route::get('/article/article{id}', 'article')->name('article'); // 記事閲覧
     // Route::post('/article/article{id}/destroy', 'destroy')->name('destroy'); // 記事削除
 });
-
-// 記事ページ
-// Route::get('/article', function () {
-//     return view('conduit_article');
-// });
-
-// // 記事作成・編集ページ
-// Route::get('/editor', function () {
-//     return view('conduit_editor');
-// });
-
 
 
 

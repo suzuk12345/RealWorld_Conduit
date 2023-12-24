@@ -65,14 +65,14 @@
           <div class="article-meta">
             <a href="/profile/eric-simons"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
             <div class="info">
-              <a href="/profile/eric-simons" class="author">Eric Simons</a>
+              <a href="" class="author">Eric Simons</a>
               <span class="date">{{ $article->updated_at->format("F jS") }}</span>
             </div>
             <!-- <button class="btn btn-outline-primary btn-sm pull-xs-right">
               <i class="ion-heart"></i> 29
             </button> -->
           </div>
-          <a href="/" class="preview-link">
+          <a href="{{ route('conduit.article', ['id' => $article->id]) }}" class="preview-link">
             <h1>{{ $article->title }}</h1>
             <p>{{ $article->description }}</p>
             <span>Read more...</span>

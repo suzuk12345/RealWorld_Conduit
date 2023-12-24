@@ -13,6 +13,7 @@ class ConduitArticleController extends Controller
     public function index()
     {
         $articles = ConduitArticle::select('id', 'title', 'description', 'updated_at')->get();
+
         return view('conduit.index', compact('articles'));
     }
 
@@ -43,9 +44,11 @@ class ConduitArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function article(string $id)
     {
-        //
+        $article = ConduitArticle::find($id);
+
+        return view('conduit.article', compact('article'));
     }
 
     /**
@@ -53,7 +56,9 @@ class ConduitArticleController extends Controller
      */
     public function editorExisting(string $id = '')
     {
-        //
+        $article = ConduitArticle::find($id);
+
+        return view('conduit.editor', compact('article'));
     }
 
     /**
