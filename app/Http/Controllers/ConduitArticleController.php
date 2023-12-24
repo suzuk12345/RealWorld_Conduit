@@ -12,7 +12,8 @@ class ConduitArticleController extends Controller
      */
     public function index()
     {
-        return view('conduit.index');
+        $articles = ConduitArticle::select('id', 'title', 'description', 'updated_at')->get();
+        return view('conduit.index', compact('articles'));
     }
 
     /**
