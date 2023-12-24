@@ -82,6 +82,10 @@ class ConduitArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $article = ConduitArticle::find($id);
+
+        $article->delete();
+
+        return to_route('conduit.index');
     }
 }

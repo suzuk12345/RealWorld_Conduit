@@ -65,7 +65,9 @@
           <i class="ion-edit"></i> Edit Article
         </button>
 
-        <button class="btn btn-sm btn-outline-danger">
+        <form id="delete" action="{{ route('conduit.destroy', ['id' => $article->id ])}}" method="post"
+          style="display: none;">@csrf</form>
+        <button class="btn btn-sm btn-outline-danger" onclick="deleteConfirm();">
           <i class="ion-trash-a"></i> Delete Article
         </button>
       </div>
@@ -106,7 +108,7 @@
           onclick="location.href='{{ route('conduit.editorExisting', ['id' => $article->id]) }}'">
           <i class="ion-edit"></i> Edit Article
         </button>
-        <button class="btn btn-sm btn-outline-danger">
+        <button class="btn btn-sm btn-outline-danger" onclick="deleteConfirm()">
           <i class="ion-trash-a"></i> Delete Article
         </button>
       </div>
@@ -173,5 +175,15 @@
     </span>
   </div>
 </footer>
+
+<script>
+function deleteConfirm() {
+  'use strict'
+  if (confirm('Do you really want to delete this article?')) {
+    document.getElementById('delete').submit();
+  }
+}
+</script>
+
 
 </html>

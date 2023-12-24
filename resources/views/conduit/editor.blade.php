@@ -47,7 +47,7 @@
           <!-- <li>That title is required</li> -->
         </ul>
         @isset($article)
-        <form method="post" action="{{ route('conduit.update', ['id' => $article->id]) }}">
+        <form id="update" method="post" action="{{ route('conduit.update', ['id' => $article->id]) }}">
           @csrf
           <fieldset>
             <fieldset class="form-group">
@@ -68,7 +68,7 @@
                 <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
               </div>
             </fieldset> -->
-            <button class="btn btn-lg pull-xs-right btn-primary" type="submit">
+            <button class="btn btn-lg pull-xs-right btn-primary" type="submit" onclick="updateConfirm();">
               Update Article
             </button>
           </fieldset>
@@ -116,5 +116,15 @@
     </span>
   </div>
 </footer>
+
+
+<script>
+function updateConfirm() {
+  'use strict'
+  if (confirm('Do you really want to update this article?')) {
+    document.getElementById('update').submit();
+  }
+}
+</script>
 
 </html>
