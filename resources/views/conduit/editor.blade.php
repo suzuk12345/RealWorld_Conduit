@@ -68,7 +68,7 @@
                 <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
               </div>
             </fieldset> -->
-            <button class="btn btn-lg pull-xs-right btn-primary" type="button">
+            <button class="btn btn-lg pull-xs-right btn-primary" type="submit">
               Publish Article
             </button>
           </fieldset>

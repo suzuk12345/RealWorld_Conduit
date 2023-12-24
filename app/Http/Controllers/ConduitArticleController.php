@@ -28,10 +28,12 @@ class ConduitArticleController extends Controller
      */
     public function store(Request $request)
     {
-        ConduitArticle::created([
+        // dd($request);
+
+        ConduitArticle::create([
             'title' => $request->title,
             'description' => $request->description,
-            'body' => $request->body,
+            'body' => $request->body
         ]);
 
         return to_route('conduit.index');
