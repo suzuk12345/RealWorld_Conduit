@@ -16,15 +16,14 @@
 <!-- header -->
 <nav class="navbar navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="{{ route('conduit.index')}}">conduit</a>
+    <a class="navbar-brand" href="{{ route('conduit.index') }}">conduit</a>
     <ul class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
         <!-- Add "active" class when you're on that page" -->
-        <a class="nav-link active" href="/">Home</a>
+        <a class="nav-link active" href="{{ route('conduit.index') }}">Home</a>
       </li>
-
       <li class="nav-item">
-        <a class="nav-link" href="/editor"> <i class="ion-compose"></i>&nbsp;New Article </a>
+        <a class="nav-link" href="{{ route('conduit.editorNew') }}"> <i class="ion-compose"></i>&nbsp;New Article </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/settings"> <i class="ion-gear-a"></i>&nbsp;Settings </a>
@@ -45,26 +44,30 @@
     <div class="row">
       <div class="col-md-10 offset-md-1 col-xs-12">
         <ul class="error-messages">
-          <li>That title is required</li>
+          <!-- <li>That title is required</li> -->
         </ul>
 
-        <form>
+        <form method="post" action="{{ route('conduit.store') }}">
+          @csrf
           <fieldset>
             <fieldset class="form-group">
-              <input type="text" class="form-control form-control-lg" placeholder="Article Title" />
+              <input type="text" name="title" id="title" class="form-control form-control-lg"
+                placeholder="Article Title" />
             </fieldset>
             <fieldset class="form-group">
-              <input type="text" class="form-control" placeholder="What's this article about?" />
+              <input type="text" name="description" id="description" class="form-control"
+                placeholder="What's this article about?" />
             </fieldset>
             <fieldset class="form-group">
-              <textarea class="form-control" rows="8" placeholder="Write your article (in markdown)"></textarea>
+              <textarea name="body" id="body" class="form-control" rows="16"
+                placeholder="Write your article (in markdown)"></textarea>
             </fieldset>
-            <fieldset class="form-group">
+            <!-- <fieldset class="form-group">
               <input type="text" class="form-control" placeholder="Enter tags" />
               <div class="tag-list">
                 <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
               </div>
-            </fieldset>
+            </fieldset> -->
             <button class="btn btn-lg pull-xs-right btn-primary" type="button">
               Publish Article
             </button>
@@ -78,7 +81,7 @@
 <!-- footer -->
 <footer>
   <div class="container">
-    <a href="/" class="logo-font">conduit</a>
+    <a href="{{ route('conduit.index') }}" class="logo-font">conduit</a>
     <span class="attribution">
       An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp;
       design licensed under MIT.

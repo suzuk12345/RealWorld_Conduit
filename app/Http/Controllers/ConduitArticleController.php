@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ConduitArticle;
 use Illuminate\Http\Request;
 
 class ConduitArticleController extends Controller
@@ -27,7 +28,13 @@ class ConduitArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ConduitArticle::created([
+            'title' => $request->title,
+            'description' => $request->description,
+            'body' => $request->body,
+        ]);
+
+        return to_route('conduit.index');
     }
 
     /**
