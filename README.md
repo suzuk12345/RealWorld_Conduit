@@ -1,23 +1,66 @@
-# ![RealWorld Example App](logo.png)
+# Conduit
 
-> ### [YOUR_FRAMEWORK] codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+ブログプラットフォームを作る [RealWorld](https://github.com/gothinkster/realworld/tree/main) という OSS のプロジェクトがあります。RealWorld は実世界と同じ機能を持つプラットフォームを作ることで、学習したいフレームワークの技術を習得することを目的としてたプロジェクトです。
 
+Conduit は [RealWolrd](https://demo.realworld.io/#/) で作成する Medium.com のクローンサイトです。
+詳細な仕様については [Specs/Backend Specs](https://realworld-docs.netlify.app/docs/specs/backend-specs/introduction), [Specs/Frontend Specs](https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates)で確認できます。
 
-### [Demo](https://demo.realworld.io/)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
+今回は Counduit と同じ見た目・機能のサイトを `Laravel` で実装しています。
 
+# 使用技術
 
-This codebase was created to demonstrate a fully fledged fullstack application built with **[YOUR_FRAMEWORK]** including CRUD operations, authentication, routing, pagination, and more.
+- PHP 8.2.14
+- Laravel 10.38.2
+- MySQL 8.0.32
+- HTML/CSS/Bootstrap (RealWorldのテンプレートを使用)
 
-We've gone to great lengths to adhere to the **[YOUR_FRAMEWORK]** community styleguides & best practices.
+# 機能
 
-For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
+### 実装済み
+- 記事 CRUD
 
+### 未実装
+- タグ機能
+- JWT認証
+- ユーザー CRU-
+- 記事へのコメント CR-D
+- ページネーション
+- 記事お気に入り
+- ユーザーフォロー
+- テスト
+- ダミー生成
 
-# How it works
+# セットアップ
+PHP と Composer がコンピュータにグローバルにインストールされていることを確認してください。
 
-> Describe the general architecture of your app here
+リポジトリのクローンを作成し、プロジェクトフォルダーに移動
+```bash
+git clone https://github.com/suzuk12345/RealWorld_Conduit.git
+cd RealWorld_Conduit
+```
 
-# Getting started
+composer install/.env作成
+```bash
+composer install
+cp .env.example .env
+```
 
-> npm install, npm start, etc.
+コンテナ起動/キー生成
+```bash
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan key:generate
+```
+
+任意) sailコマンドのBashエイリアスを構成
+```bash
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+```
+
+セットアップ完了 ホームページやphpMyAdminにアクセスできます。
+- ホームページ
+http://localhost/conduit/
+- phpMyAdmin
+http://localhost:8080/
+
+# 主要ディレクトリ/ファイル
 
