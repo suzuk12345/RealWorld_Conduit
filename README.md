@@ -1,3 +1,6 @@
+- Table of Content
+{:toc}
+
 # Conduit
 
 ブログプラットフォームを作る [RealWorld](https://github.com/gothinkster/realworld/tree/main) という OSS のプロジェクトがあります。RealWorld は実世界と同じ機能を持つプラットフォームを作ることで、学習したいフレームワークの技術を習得することを目的としてたプロジェクトです。
@@ -64,11 +67,11 @@ http://localhost:8080/
 
 # 主要ディレクトリ/ファイル
 - Model
-[app/Models/ConduitArticle.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Models/ConduitArticle.php)
-[migrations/create_conduit_articles_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/database/migrations/2023_12_23_113214_create_conduit_articles_table.php)
+    - [app/Models/ConduitArticle.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Models/ConduitArticle.php)
+    - [migrations/create_conduit_articles_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/database/migrations/2023_12_23_113214_create_conduit_articles_table.php)
 - View
-[resources/views/conduit](https://github.com/suzuk12345/RealWorld_Conduit/tree/master/resources/views/conduit)
+    - [resources/views/conduit](https://github.com/suzuk12345/RealWorld_Conduit/tree/master/resources/views/conduit)
 - Controller
-[app/Http/Controllers/ConduitArticleController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Http/Controllers/ConduitArticleController.php)
+    - [app/Http/Controllers/ConduitArticleController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Http/Controllers/ConduitArticleController.php)
 - Route
-[routes/web.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/routes/web.php)
+    - [routes/web.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/routes/web.php)
