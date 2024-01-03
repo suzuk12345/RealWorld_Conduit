@@ -20,9 +20,9 @@ Conduit は [RealWolrd](https://demo.realworld.io/#/) で作成する Medium.com
 - 記事 CRUD
 
 ### 未実装
-- タグ機能
 - JWT認証
 - ユーザー CRU-
+- タグ機能
 - 記事へのコメント CR-D
 - ページネーション
 - 記事お気に入り
@@ -63,4 +63,12 @@ http://localhost/conduit/
 http://localhost:8080/
 
 # 主要ディレクトリ/ファイル
-
+- Model
+[app/Models/ConduitArticle.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Models/ConduitArticle.php)
+[migrations/create_conduit_articles_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/database/migrations/2023_12_23_113214_create_conduit_articles_table.php)
+- View
+[resources/views/conduit](https://github.com/suzuk12345/RealWorld_Conduit/tree/master/resources/views/conduit)
+- Controller
+[app/Http/Controllers/ConduitArticleController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Http/Controllers/ConduitArticleController.php)
+- Route
+[routes/web.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/routes/web.php)
