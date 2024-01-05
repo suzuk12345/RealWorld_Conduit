@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ConduitAuthController;
+use App\Http\Controllers\ConduitUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// ログイン・ログアウト
+Route::post('users/login', [ConduitAuthController::class, 'login'])->name('login');
+Route::middleware('auth:sanctum')
+->post('/users/logout', [ConduitAuthController::class, 'logout'])->name('logout');
+
+// ユーザー CRU-
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/users', [ConduitUserController::class, 'show']);
+});
+
+// 記事 CRUD
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    //
 });

@@ -36,8 +36,10 @@ Conduit は [RealWolrd](https://demo.realworld.io/#/) で作成する Medium.com
 - 記事へのコメント CR-D
 - ページネーション
 - 記事お気に入り
+- 記事マークダウン対応
 - ユーザーフォロー
 - テスト
+- バリデーション
 - ダミー生成
 
 # セットアップ
