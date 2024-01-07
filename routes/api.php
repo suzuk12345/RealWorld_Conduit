@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ConduitAuthController;
-use App\Http\Controllers\ConduitUserController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +17,26 @@ use App\Http\Controllers\ConduitUserController;
 */
 
 // ログイン・ログアウト
-Route::post('users/login', [ConduitAuthController::class, 'login'])->name('login');
-Route::middleware('auth:sanctum')
-->post('/users/logout', [ConduitAuthController::class, 'logout'])->name('logout');
+Route::prefix('/users')
+->controller(AuthController::class)->group(function () {
+    Route::post('/login', 'login');
+    Route::post('/logout', 'logout');
+    Route::post('/refresh', 'refresh');
+});
 
 // ユーザー CRU-
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/users', [ConduitUserController::class, 'show']);
+Route::prefix('/users')
+->controller(UserController::class)->group(function () {
+    Route::post('/', 'register');
+    Route::get('/', 'show');
+    Route::put('/', 'update');
 });
 
 // 記事 CRUD
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    //
+Route::prefix('/articles')
+->controller(UserController::class)->group(function () {
+    Route::post('/', 'create');
+    Route::get('/{slug}', 'show');
+    Route::put('/{slug}', 'update');
+    Route::delete('/{slug}', 'update');
 });

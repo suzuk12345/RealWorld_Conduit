@@ -16,7 +16,7 @@ return [
     'defaults' => [
         // 'guard' => 'web',
         'guard' => 'api',
-        'passwords' => 'conduit_users',
+        'passwords' => 'users',
     ],
 
     /*
@@ -39,11 +39,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'conduit_users',
+            'provider' => 'users',
         ],
         'api' => [
-            'driver' => 'token',
-            'provider' => 'conduit_users',
+            'driver' => 'jwt',
+            'provider' => 'users',
         ],
     ],
 
@@ -65,9 +65,9 @@ return [
     */
 
     'providers' => [
-        'conduit_users' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\ConduitUser::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
@@ -96,8 +96,8 @@ return [
     */
 
     'passwords' => [
-        'conduit_users' => [
-            'provider' => 'conduit_users',
+        'users' => [
+            'provider' => 'users',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

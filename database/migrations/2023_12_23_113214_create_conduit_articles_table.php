@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('conduit_articles', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->string('slug', 255);
             $table->string('title', 64);
             $table->string('description', 64);
             $table->string('body', 1024);
             $table->timestamps();
+            $table->integer('favoriteCount')->default(0);
+            $table->foreignId('user_id')->constrained(); // 著者
         });
     }
 

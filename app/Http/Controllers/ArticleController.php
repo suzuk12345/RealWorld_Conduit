@@ -2,27 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ConduitArticle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Article;
 
 class ConduitArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['index']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $articles = ConduitArticle::select('id', 'title', 'description', 'updated_at')->get();
-
-        return view('conduit.index', compact('articles'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function editorNew()
-    {
-        return view('conduit.editor');
+        //
     }
 
     /**
@@ -30,35 +26,29 @@ class ConduitArticleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-
-        ConduitArticle::create([
+        $authorId = Auth::user()->id;
+        $article = Article::create([
+            'slug' => implode('-', explode(' ', $request->title)),
             'title' => $request->title,
             'description' => $request->description,
-            'body' => $request->body
+            'body' => $request->body,
+            'user_id' => $authorId
         ]);
 
-        return to_route('conduit.index');
+        return response()->json([
+            'message' => '記事の作成に成功しました!',
+            'article' => $article
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function article(string $id)
+    public function show(string $id)
     {
-        $article = ConduitArticle::find($id);
+        $article = Article::find($id);
 
         return view('conduit.article', compact('article'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function editorExisting(string $id)
-    {
-        $article = ConduitArticle::find($id);
-
-        return view('conduit.editor', compact('article'));
     }
 
     /**
@@ -66,7 +56,7 @@ class ConduitArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $article = ConduitArticle::find($id);
+        $article = Article::find($id);
 
         $article->title = $request->title;
         $article->description = $request->description;
@@ -82,7 +72,7 @@ class ConduitArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        $article = ConduitArticle::find($id);
+        $article = Article::find($id);
 
         $article->delete();
 

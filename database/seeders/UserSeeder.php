@@ -4,22 +4,22 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\ConduitUser;
+use App\Models\User;
 
-class ConduitUserSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        ConduitUser::create([
+        User::create([
             'username' => 'test',
             'email' => 'test@examle.com',
             'password' => bcrypt('password'),
         ]);
 
-        ConduitUser::create([
+        User::create([
             'username' => 'suzuki',
             'email' => 'suzuki@examle.com',
             'password' => bcrypt('password'),
