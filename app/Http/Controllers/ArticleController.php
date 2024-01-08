@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 
-class ConduitArticleController extends Controller
+class ArticleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['index']]);
+        $this->middleware('auth:api', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -24,14 +24,14 @@ class ConduitArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $authorId = Auth::user()->id;
         $article = Article::create([
-            'slug' => implode('-', explode(' ', $request->title)),
-            'title' => $request->title,
-            'description' => $request->description,
-            'body' => $request->body,
+            'slug' => implode('-', explode(' ', $request->input('article.title'))),
+            'title' => $request->input('article.title'),
+            'description' => $request->input('article.description'),
+            'body' => $request->input('article.body'),
             'user_id' => $authorId
         ]);
 
@@ -44,38 +44,53 @@ class ConduitArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        $article = Article::find($id);
-
-        return view('conduit.article', compact('article'));
+        $article = Article::find($request->input('id'));
+        $author = $article->author;
+        return response()->json([
+            'article' => $article,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        $article = Article::find($id);
+        $article = Article::find($request->input('id'));
+        $authorId = $article->user_id;
 
-        $article->title = $request->title;
-        $article->description = $request->description;
-        $article->body = $request->body;
+        if (Auth::user()->id != $authorId) {
+            return response()->json([
+                'message' => '記事の著者ではありません。',
+            ]);
+        }
+
+        $article->slug = implode('-', explode(' ', $request->input('article.title')));
+        $article->title = $request->input('article.title');
+        $article->description = $request->input('article.description');
+        $article->body = $request->input('article.body');
 
         $article->save();
 
-        return to_route('conduit.index');
+        return response()->json([
+            'message' => '記事の更新に成功しました!',
+            'article' => $article
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        $article = Article::find($id);
+        $article = Article::find($request->input('id'));
 
         $article->delete();
 
-        return to_route('conduit.index');
+        return response()->json([
+            'message' => '記事の削除に成功しました。'
+        ]);
     }
 }

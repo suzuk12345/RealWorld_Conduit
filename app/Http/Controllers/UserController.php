@@ -37,6 +37,7 @@ class UserController extends Controller
         return response()->json(
             [
                 'user' => [
+                    'email' => $request->user()->email,
                     'username' => $request->user()->username,
                     'bio' => $request->user()->bio,
                     'image' => $request->user()->image,

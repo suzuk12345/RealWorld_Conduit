@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +35,10 @@ Route::prefix('/users')
 
 // 記事 CRUD
 Route::prefix('/articles')
-->controller(UserController::class)->group(function () {
+->controller(ArticleController::class)->group(function () {
+    Route::get('/feed', 'index');
     Route::post('/', 'create');
     Route::get('/{slug}', 'show');
     Route::put('/{slug}', 'update');
-    Route::delete('/{slug}', 'update');
+    Route::delete('/{slug}', 'destroy');
 });

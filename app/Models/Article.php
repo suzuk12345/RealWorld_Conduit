@@ -17,8 +17,18 @@ class Article extends Model
         'user_id'
     ];
 
+    protected $hidden = [
+        'id',
+        'user_id'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function author()
     {
-        return $this->hasMany(User::class);
+        return $this->user();
     }
 }
