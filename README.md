@@ -77,11 +77,14 @@ http://localhost:8080/
 
 # 主要ディレクトリ/ファイル
 - Model
-    - [app/Models/ConduitArticle.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Models/ConduitArticle.php)
+    - [app/Models/User.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Models/User.php)
+    - [app/Models/Article.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Models/Article.php)
+- Migration
+    - [migrations/create_conduit_articles_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/database/migrations/2014_10_12_000000_create_users_table.php)
     - [migrations/create_conduit_articles_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/database/migrations/2023_12_23_113214_create_conduit_articles_table.php)
-- View
-    - [resources/views/conduit](https://github.com/suzuk12345/RealWorld_Conduit/tree/master/resources/views/conduit)
 - Controller
-    - [app/Http/Controllers/ConduitArticleController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Http/Controllers/ConduitArticleController.php)
+    - [app/Http/Controllers/AuthController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Http/Controllers/AuthController.php)
+    - [app/Http/Controllers/UserController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Http/Controllers/UserController.php)
+    - [app/Http/Controllers/ArticleController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Http/Controllers/ArticleController.php)
 - Route
-    - [routes/web.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/routes/web.php)
+    - [routes/api.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/routes/api.php)
