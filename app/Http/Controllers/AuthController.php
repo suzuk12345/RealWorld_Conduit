@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -14,7 +15,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->user;
         $token = Auth::attempt($credentials);
 
         if (!$token) {
@@ -23,14 +24,8 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user = Auth::user();
-        return response()->json([
-            'user' => $user,
-            'authorization' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
+        $res = $this->userRes(Auth::user(), $token);
+        return response()->json([$res]);
     }
 
     public function logout()
@@ -43,12 +38,20 @@ class AuthController extends Controller
 
     public function refresh()
     {
-        return response()->json([
-            'user' => Auth::user(),
-            'authorization' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
+        $res = $this->userRes(Auth::user(), Auth::refresh());
+        return response()->json([$res]);
+    }
+
+    private function userRes($user, $token)
+    {
+        return [
+            'user' => [
+                'email' => $user->email,
+                'token' => $token,
+                'username' => $user->username,
+                'bio' => $user->bio,
+                'image' => $user->image
             ]
-        ]);
+        ];
     }
 }

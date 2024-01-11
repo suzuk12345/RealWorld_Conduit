@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use App\Models\User;
 
 class UserController extends Controller
@@ -23,10 +24,11 @@ class UserController extends Controller
             'password' => bcrypt($request->input('user.password')),
         ]);
 
-        return response()->json([
-            'message' => 'ユーザーの作成に成功しました!',
-            'user' => $user
-        ]);
+        $credentials = $request->user;
+        $token = Auth::attempt($credentials);
+
+        $res = $this->userRes($user, $token);
+        return response()->json($res);
     }
 
     /**
@@ -34,16 +36,8 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
-        return response()->json(
-            [
-                'user' => [
-                    'email' => $request->user()->email,
-                    'username' => $request->user()->username,
-                    'bio' => $request->user()->bio,
-                    'image' => $request->user()->image,
-                ]
-            ]
-        );
+        $res = $this->userRes(Auth::user(), Auth::tokenById(Auth::user()->id));
+        return response()->json($res);
     }
 
     /**
@@ -51,7 +45,7 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        $user = User::find($request->user()->id);
+        $user = User::find(Auth::user()->id);
 
         $user->email = $request->input('user.email');
         $user->username = $request->input('user.username');
@@ -61,9 +55,20 @@ class UserController extends Controller
 
         $user->save();
 
-        return response()->json([
-            'message' => 'ユーザー情報の更新に成功しました!',
-            'user' => $user
-        ]);
+        $res = $this->userRes($user, Auth::tokenById(Auth::user()->id));
+        return response()->json($res);
+    }
+
+    private function userRes($user, $token)
+    {
+        return [
+            'user' => [
+                'email' => $user->email,
+                'token' => $token,
+                'username' => $user->username,
+                'bio' => $user->bio,
+                'image' => $user->image
+            ]
+        ];
     }
 }
