@@ -80,7 +80,7 @@ http://localhost:8080/
     - [app/Models/User.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Models/User.php)
     - [app/Models/Article.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Models/Article.php)
 - Migration
-    - [migrations/create_conduit_articles_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/database/migrations/2014_10_12_000000_create_users_table.php)
+    - [migrations/create_users_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/database/migrations/2014_10_12_000000_create_users_table.php)
     - [migrations/create_conduit_articles_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/database/migrations/2023_12_23_113214_create_conduit_articles_table.php)
 - Controller
     - [app/Http/Controllers/AuthController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Http/Controllers/AuthController.php)

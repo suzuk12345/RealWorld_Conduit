@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
+use App\Models\Tag;
+use Illuminate\Support\Facades\Log;
 
 class ArticleController extends Controller
 {
@@ -35,10 +37,16 @@ class ArticleController extends Controller
             'user_id' => $authorId
         ]);
 
-        return response()->json([
-            'message' => '記事の作成に成功しました!',
-            'article' => $article
-        ]);
+        for ($i = 0; $i < count($request->input('article.tagList')); $i++) {
+            Tag::create([
+                'article_id' => $article->id,
+                'tag_name' => $request->input('article.tagList')[$i]
+            ]);
+        }
+
+        $res = $this->articleRes($article);
+
+        return response()->json($res);
     }
 
     /**
@@ -47,10 +55,9 @@ class ArticleController extends Controller
     public function show(Request $request)
     {
         $article = Article::find($request->input('id'));
-        $author = $article->author;
-        return response()->json([
-            'article' => $article,
-        ]);
+        $res = $this->articleRes($article);
+
+        return response()->json([$res]);
     }
 
     /**
@@ -74,10 +81,9 @@ class ArticleController extends Controller
 
         $article->save();
 
-        return response()->json([
-            'message' => '記事の更新に成功しました!',
-            'article' => $article
-        ]);
+        $res = $this->articleRes($article);
+
+        return response()->json([$res]);
     }
 
     /**
@@ -92,5 +98,30 @@ class ArticleController extends Controller
         return response()->json([
             'message' => '記事の削除に成功しました。'
         ]);
+    }
+
+
+    private function articleRes($article)
+    {
+        $tags = $article->tags;
+        $author = $article->user;
+        $tagList = [];
+        for ($i = 0; $i < count($tags); $i++) {
+            $tagList[] = $tags[$i]['tag_name'];
+        }
+
+        return [
+            'article' => [
+                'slug' => $article->slug,
+                'title' => $article->title,
+                'description' => $article->description,
+                'body' => $article->body,
+                'tagList' => $tagList,
+                'created_at' => $article->created_at,
+                'updated_at' => $article->updated_at,
+                'favoriteCount' => $article->favoriteCount,
+                'author' => $author
+            ]
+        ];
     }
 }

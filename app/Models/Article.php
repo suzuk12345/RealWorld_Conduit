@@ -27,8 +27,8 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function author()
+    public function tags()
     {
-        return $this->user();
+        return $this->hasMany(Tag::class);
     }
 }
