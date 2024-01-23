@@ -25,7 +25,7 @@ class AuthController extends Controller
         }
 
         $res = $this->userRes(Auth::user(), $token);
-        return response()->json([$res]);
+        return response()->json($res);
     }
 
     public function logout()
@@ -39,7 +39,7 @@ class AuthController extends Controller
     public function refresh()
     {
         $res = $this->userRes(Auth::user(), Auth::refresh());
-        return response()->json([$res]);
+        return response()->json($res);
     }
 
     private function userRes($user, $token)
