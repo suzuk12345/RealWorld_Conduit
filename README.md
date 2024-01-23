@@ -95,5 +95,5 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
     -   [app/Http/Controllers/ArticleController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Http/Controllers/ArticleController.php)
 -   Route
     -   [routes/api.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/routes/api.php)
-        Postman ([オリジナル](https://github.com/gothinkster/realworld/blob/main/api/Conduit.postman_collection.json)を参考に実装済みの部分のみに修正)
+-   Postman ([オリジナル](https://github.com/gothinkster/realworld/blob/main/api/Conduit.postman_collection.json)を参考に実装済みの部分のみに修正)
     -   [Conduit.postman_collection.json](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/Conduit.postman_collection.json)
