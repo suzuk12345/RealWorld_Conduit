@@ -1,4 +1,5 @@
 # 目次
+
 - [目次](#目次)
 - [Conduit](#conduit)
 - [使用技術](#使用技術)
@@ -19,66 +20,80 @@ Conduit は [RealWolrd](https://demo.realworld.io/#/) で作成する Medium.com
 
 # 使用技術
 
-- PHP 8.2.14
-- Laravel 10.38.2
-- MySQL 8.0.32
-- HTML/CSS/Bootstrap (RealWorldのテンプレートを使用)
+-   PHP 8.2.14
+-   Laravel 10.38.2
+-   MySQL 8.0.32
+-   HTML/CSS/Bootstrap (RealWorld のテンプレートを使用)
 
 # 機能
 
 ### 実装済み
-- 記事 CRUD
+
+-   JWT 認証
+-   ユーザー CRU-
+-   記事 CRUD
+-   タグ機能
 
 ### 未実装
-- JWT認証
-- ユーザー CRU-
-- タグ機能
-- 記事へのコメント CR-D
-- ページネーション
-- 記事お気に入り
-- ユーザーフォロー
-- テスト
-- ダミー生成
+
+-   記事へのコメント CR-D
+-   記事一覧ページネーション
+-   記事お気に入り
+-   記事マークダウン反映
+-   ユーザーフォロー
+-   テスト
+-   バリデーション
+-   ダミー生成
 
 # セットアップ
+
 PHP と Composer がコンピュータにグローバルにインストールされていることを確認してください。
 
 リポジトリのクローンを作成し、プロジェクトフォルダーに移動
+
 ```bash
 git clone https://github.com/suzuk12345/RealWorld_Conduit.git
 cd RealWorld_Conduit
 ```
 
-composer install/.env作成
+composer install/.env 作成
+
 ```bash
 composer install
 cp .env.example .env
 ```
 
 コンテナ起動/キー生成
+
 ```bash
 ./vendor/bin/sail up -d
 ./vendor/bin/sail artisan key:generate
 ```
 
-任意) sailコマンドのBashエイリアスを構成
+任意) sail コマンドの Bash エイリアスを構成
+
 ```bash
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 ```
 
-セットアップ完了 ホームページやphpMyAdminにアクセスできます。
-- ホームページ
-http://localhost/conduit/
-- phpMyAdmin
-http://localhost:8080/
+セットアップ完了 API や phpMyAdmin にアクセスできます。
+
+-   phpMyAdmin
+    http://localhost:8080/
 
 # 主要ディレクトリ/ファイル
-- Model
-    - [app/Models/ConduitArticle.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Models/ConduitArticle.php)
-    - [migrations/create_conduit_articles_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/database/migrations/2023_12_23_113214_create_conduit_articles_table.php)
-- View
-    - [resources/views/conduit](https://github.com/suzuk12345/RealWorld_Conduit/tree/master/resources/views/conduit)
-- Controller
-    - [app/Http/Controllers/ConduitArticleController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/app/Http/Controllers/ConduitArticleController.php)
-- Route
-    - [routes/web.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/routes/web.php)
+
+-   Model
+    -   [app/Models/User.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Models/User.php)
+    -   [app/Models/Article.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Models/Article.php)
+-   Migration
+    -   [migrations/create_users_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/database/migrations/2014_10_12_000000_create_users_table.php)
+    -   [migrations/create_conduit_articles_table.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/master/database/migrations/2023_12_23_113214_create_conduit_articles_table.php)
+-   Controller
+    -   [app/Http/Controllers/AuthController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Http/Controllers/AuthController.php)
+    -   [app/Http/Controllers/UserController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Http/Controllers/UserController.php)
+    -   [app/Http/Controllers/ArticleController.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/app/Http/Controllers/ArticleController.php)
+-   Route
+    -   [routes/api.php](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/routes/api.php)
+-   Postman ([オリジナル](https://github.com/gothinkster/realworld/blob/main/api/Conduit.postman_collection.json)を参考に実装済みの部分のみに修正)
+    -   [Conduit.postman_collection.json](https://github.com/suzuk12345/RealWorld_Conduit/blob/API/Conduit.postman_collection.json)
