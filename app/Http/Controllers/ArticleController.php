@@ -15,17 +15,7 @@ class ArticleController extends Controller
         $this->middleware('auth:api', ['except' => ['index', 'show']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    // 記事作成
     public function create(Request $request)
     {
         $authorId = Auth::user()->id;
@@ -49,32 +39,28 @@ class ArticleController extends Controller
         return response()->json($res);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Request $request)
+    // 記事取得
+    public function show($slug)
     {
-        $article = Article::find($request->input('id'));
+        $article = Article::where('slug', $slug)->first();
+        Log::debug($article);
         $res = $this->articleRes($article);
 
-        return response()->json([$res]);
+        return response()->json($res);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request)
+    // 記事更新
+    public function update(Request $request, $slug)
     {
-        $article = Article::find($request->input('id'));
-        $authorId = $article->user_id;
+        $article = Article::where('slug', $slug)->first();
 
-        if (Auth::user()->id != $authorId) {
+        if (Auth::user()->id != $article->user_id) {
             return response()->json([
                 'message' => '記事の著者ではありません。',
             ]);
         }
 
-        $article->slug = implode('-', explode(' ', $request->input('article.title')));
+        $article->slug = implode('-', explode(' ', $request->input('article.title'))) . `-{$article->id}`;
         $article->title = $request->input('article.title');
         $article->description = $request->input('article.description');
         $article->body = $request->input('article.body');
@@ -83,28 +69,24 @@ class ArticleController extends Controller
 
         $res = $this->articleRes($article);
 
-        return response()->json([$res]);
+        return response()->json($res);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Request $request)
+    // 記事削除
+    public function destroy($slug)
     {
-        $article = Article::find($request->input('id'));
-
-        $article->delete();
+        Article::where('slug', $slug)->delete();
 
         return response()->json([
             'message' => '記事の削除に成功しました。'
         ]);
     }
 
-
+    // レスポンス作成
     private function articleRes($article)
     {
-        $tags = $article->tags;
         $author = $article->user;
+        $tags = $article->tags;
         $tagList = [];
         for ($i = 0; $i < count($tags); $i++) {
             $tagList[] = $tags[$i]['tag_name'];

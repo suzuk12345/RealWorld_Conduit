@@ -40,5 +40,5 @@ Route::prefix('/articles')
     Route::post('/', 'create');
     Route::get('/{slug}', 'show');
     Route::put('/{slug}', 'update');
-    Route::delete('/{slug}', 'destroy');
+    Route::post('/{slug}', 'destroy');
 });

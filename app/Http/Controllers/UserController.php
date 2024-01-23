@@ -13,9 +13,8 @@ class UserController extends Controller
     {
         $this->middleware('auth:api', ['except' => ['register']]);
     }
-    /**
-     * Store a newly created resource in storage.
-     */
+
+    // ユーザー登録
     public function register(Request $request)
     {
         $user = User::create([
@@ -31,18 +30,14 @@ class UserController extends Controller
         return response()->json($res);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // 現在のユーザー情報取得
     public function show(Request $request)
     {
         $res = $this->userRes(Auth::user(), Auth::tokenById(Auth::user()->id));
         return response()->json($res);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // ユーザー情報更新
     public function update(Request $request)
     {
         $user = User::find(Auth::user()->id);
@@ -59,6 +54,7 @@ class UserController extends Controller
         return response()->json($res);
     }
 
+    // レスポンス作成
     private function userRes($user, $token)
     {
         return [
