@@ -36,7 +36,8 @@ Route::prefix('/users')
 // 記事 CRUD
 Route::prefix('/articles')
 ->controller(ArticleController::class)->group(function () {
-    Route::get('/feed', 'index');
+    Route::get('/globalFeed', 'globalFeed');
+    Route::get('/userFeed', 'userFeed');
     Route::post('/', 'create');
     Route::get('/{slug}', 'show');
     Route::put('/{slug}', 'update');

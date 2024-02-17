@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FeedArticleResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
@@ -12,15 +13,28 @@ class ArticleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+        $this->middleware('auth:api', ['except' => ['globalFeed', 'show']]);
     }
+
+    // 記事一覧(全体)
+    public function globalFeed()
+    {
+        return FeedArticleResource::collection(Article::with('user', 'tags')->orderBy('id', 'desc')->paginate(5));
+    }
+
+    // 記事一覧(認証済みユーザー)
+    public function userFeed()
+    {
+        return FeedArticleResource::collection(Article::where('user_id', '=', auth()->user()->id)->with('user', 'tags')->orderBy('id', 'desc')->paginate(5));
+    }
+
 
     // 記事作成
     public function create(Request $request)
     {
-        $authorId = Auth::user()->id;
+        $authorId = auth()->user()->id;
         $article = Article::create([
-            'slug' => implode('-', explode(' ', $request->input('article.title'))),
+            'slug' => urlencode(implode('-', explode(' ', $request->input('article.title')))),
             'title' => $request->input('article.title'),
             'description' => $request->input('article.description'),
             'body' => $request->input('article.body'),
@@ -43,7 +57,6 @@ class ArticleController extends Controller
     public function show($slug)
     {
         $article = Article::where('slug', $slug)->first();
-        Log::debug($article);
         $res = $this->articleRes($article);
 
         return response()->json($res);
@@ -54,13 +67,13 @@ class ArticleController extends Controller
     {
         $article = Article::where('slug', $slug)->first();
 
-        if (Auth::user()->id != $article->user_id) {
+        if (auth()->user()->id != $article->user_id) {
             return response()->json([
                 'message' => '記事の著者ではありません。',
-            ]);
+            ], 401);
         }
 
-        $article->slug = implode('-', explode(' ', $request->input('article.title'))) . `-{$article->id}`;
+        $article->slug = urlencode(implode('-', explode(' ', $request->input('article.title'))));
         $article->title = $request->input('article.title');
         $article->description = $request->input('article.description');
         $article->body = $request->input('article.body');
@@ -75,8 +88,15 @@ class ArticleController extends Controller
     // 記事削除
     public function destroy($slug)
     {
-        Article::where('slug', $slug)->delete();
+        $article = Article::where('slug', $slug)->first();
 
+        if (auth()->user()->id != $article->user_id) {
+            return response()->json([
+                'message' => '記事の著者ではありません。',
+            ], 401);
+        }
+
+        $article->delete();
         return response()->json([
             'message' => '記事の削除に成功しました。'
         ]);
