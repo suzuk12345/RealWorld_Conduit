@@ -13,10 +13,12 @@
 
 ブログプラットフォームを作る [RealWorld](https://github.com/gothinkster/realworld/tree/main) という OSS のプロジェクトがあります。RealWorld は実世界と同じ機能を持つプラットフォームを作ることで、学習したいフレームワークの技術を習得することを目的としたプロジェクトです。
 
-Conduit は [RealWolrd](https://demo.realworld.io/#/) で作成する Medium.com のクローンサイトです。
+Conduit は [RealWorld](https://demo.realworld.io/#/) で作成する Medium.com のクローンサイトです。
 詳細な仕様については [Specs/Backend Specs](https://realworld-docs.netlify.app/docs/specs/backend-specs/introduction), [Specs/Frontend Specs](https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates)で確認できます。
 
-今回は Counduit と同じ見た目・機能のサイトを `Laravel` で実装しています。
+今回は Conduit と同じ見た目・機能のサイトを `Laravel API` で実装しています。
+
+フロントエンドのディレクトリは[こちら](https://github.com/suzuk12345/realworld_conduit_nextjs)
 
 # 使用技術
 
@@ -33,17 +35,17 @@ Conduit は [RealWolrd](https://demo.realworld.io/#/) で作成する Medium.com
 -   ユーザー CRU-
 -   記事 CRUD
 -   タグ機能
+-   ダミー生成
+-   記事一覧ページネーション
 
 ### 未実装
 
 -   記事へのコメント CR-D
--   記事一覧ページネーション
 -   記事お気に入り
 -   記事マークダウン反映
 -   ユーザーフォロー
 -   テスト
 -   バリデーション
--   ダミー生成
 
 # セットアップ
 
