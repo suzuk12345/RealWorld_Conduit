@@ -21,18 +21,18 @@ use App\Http\Controllers\ConduitArticleController;
 // });
 
 // 認証済みhome(認証未設定)
-Route::prefix('conduit')
-->name('conduit.')
-->controller(ConduitArticleController::class)
-->group(function () {
-    Route::get('/', 'index')->name('index'); // ホーム
-    Route::get('/editor', 'editorNew')->name('editorNew'); // 新規作成
-    Route::post('/', 'store')->name('store'); // 投稿
-    Route::get('/editor/article{id}', 'editorExisting')->name('editorExisting'); // 編集
-    Route::post('/editor/article{id}', 'update')->name('update'); // 更新
-    Route::get('/article/article{id}', 'article')->name('article'); // 閲覧
-    Route::post('/article/article{id}/destroy', 'destroy')->name('destroy'); // 削除
-});
+// Route::prefix('conduit')
+// ->name('conduit.')
+// ->controller(ConduitArticleController::class)
+// ->group(function () {
+//     Route::get('/', 'index')->name('index'); // ホーム
+//     Route::get('/editor', 'editorNew')->name('editorNew'); // 新規作成
+//     Route::post('/', 'store')->name('store'); // 投稿
+//     Route::get('/editor/article{id}', 'editorExisting')->name('editorExisting'); // 編集
+//     Route::post('/editor/article{id}', 'update')->name('update'); // 更新
+//     Route::get('/article/article{id}', 'article')->name('article'); // 閲覧
+//     Route::post('/article/article{id}/destroy', 'destroy')->name('destroy'); // 削除
+// });
 
 
 
