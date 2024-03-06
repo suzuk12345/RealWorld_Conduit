@@ -1,21 +1,21 @@
 # 目次
 
--   [目次](#目次)
--   [Conduit](#conduit)
--   [API リファレンス](#api-リファレンス)
-    -   [ドメイン名](#ドメイン名)
-    -   [ユーザー CRU-](#ユーザー-cru-)
-        -   [エンドポイント一覧](#エンドポイント一覧)
-    -   [認証](#認証)
-        -   [エンドポイント一覧](#エンドポイント一覧-1)
-    -   [記事 CRUD](#記事-crud)
-        -   [エンドポイント一覧](#エンドポイント一覧-2)
--   [使用技術](#使用技術)
--   [機能](#機能)
-    -   [実装済み](#実装済み)
-    -   [未実装](#未実装)
--   [セットアップ](#セットアップ)
--   [主要ディレクトリ/ファイル](#主要ディレクトリファイル)
+- [目次](#目次)
+- [Conduit](#conduit)
+- [API リファレンス](#api-リファレンス)
+  - [ドメイン名](#ドメイン名)
+  - [ユーザー CRU-](#ユーザー-cru-)
+    - [エンドポイント一覧](#エンドポイント一覧)
+  - [認証](#認証)
+    - [エンドポイント一覧](#エンドポイント一覧-1)
+  - [記事 CRUD](#記事-crud)
+    - [エンドポイント一覧](#エンドポイント一覧-2)
+- [使用技術](#使用技術)
+- [機能](#機能)
+    - [実装済み](#実装済み)
+    - [未実装](#未実装)
+- [セットアップ](#セットアップ)
+- [主要ディレクトリ/ファイル](#主要ディレクトリファイル)
 
 # Conduit
 
@@ -52,8 +52,11 @@ https://suzuki-test.xyz
 `POST /api/users/`
 
 -   リクエストヘッダー
+
     `必須` `Content-Type: application/json`
+
 -   リクエストボディ例
+
     `必須項目`:`email`, `password`, `username`
 
     ```
@@ -88,6 +91,7 @@ https://suzuki-test.xyz
 `GET /api/users/`
 
 -   リクエストヘッダー
+
     `必須` `Authorization: Bearer jwt.token.here`
 
 -   レスポンスボディ例
@@ -112,10 +116,13 @@ https://suzuki-test.xyz
 `PUT /api/users/`
 
 -   リクエストヘッダー
+
     `必須` `Authorization: Bearer jwt.token.here`
+
     `必須` `Content-Type: application/json`
 
 -   リクエストボディ例
+
     `必須項目`:`email`, `password`, `username`, `bio`, `image`
 
     ```
@@ -162,9 +169,11 @@ https://suzuki-test.xyz
 `POST /api/users/login`
 
 -   リクエストヘッダー
+
     `必須` `Content-Type: application/json`
 
 -   リクエストボディ例
+
     `必須項目`:`email`, `password`
 
     ```
@@ -198,6 +207,7 @@ https://suzuki-test.xyz
 `POST /api/users/logout`
 
 -   リクエストヘッダー
+
     `必須` `Authorization: Bearer jwt.token.here`
 
 -   レスポンスボディ例
@@ -216,6 +226,7 @@ https://suzuki-test.xyz
 `POST /api/users/refresh`
 
 -   リクエストヘッダー
+
     `必須` `Authorization: Bearer jwt.token.here`
 
 -   レスポンスボディ例
@@ -253,7 +264,9 @@ https://suzuki-test.xyz
 `GET /api/articles/globalFeed
 
 -   クエリパラメータ
+
     任意 `page`: 取得するページ番号。1 以上を指定。
+
     例 `/api/articles/globalFeed?page=2`
 
 -   レスポンスボディ例
@@ -448,10 +461,13 @@ https://suzuki-test.xyz
 `GET /api/articles/userFeed`
 
 -   クエリパラメータ
+
     任意 `page`: 取得するページ番号。 1 以上を指定。
+
     例 `/api/articles/userFeed?page=2`
 
 -   リクエストヘッダー
+
     `必須` `Authorization: Bearer jwt.token.here`
 
 -   レスポンスボディ例
@@ -611,11 +627,15 @@ https://suzuki-test.xyz
 `POST /api/articles/`
 
 -   リクエストヘッダー
+
     `必須` `Authorization: Bearer jwt.token.here`
+
     `必須` `Content-Type: application/json`
 
 -   リクエストボディ例
+
     `必須項目`:`title`, `description`, `body`
+
     任意項目:`tagList`
 
     ```
@@ -697,10 +717,13 @@ https://suzuki-test.xyz
 `PUT /api/articles/{slug}`
 
 -   リクエストヘッダー
+
     `必須` `Authorization: Bearer jwt.token.here`
+
     `必須` `Content-Type: application/json`
 
 -   リクエストボディ例
+
     `必須項目`:`title`, `description`, `body`
 
     ```
@@ -746,6 +769,7 @@ https://suzuki-test.xyz
 `POST /api/articles/{slug}`
 
 -   リクエストヘッダー
+
     `必須` `Authorization: Bearer jwt.token.here`
 
 -   レスポンスボディ例
