@@ -10,6 +10,7 @@
     - [エンドポイント一覧](#エンドポイント一覧-1)
   - [記事 CRUD](#記事-crud)
     - [エンドポイント一覧](#エンドポイント一覧-2)
+- [インフラ アーキテクチャ図](#インフラ-アーキテクチャ図)
 - [使用技術](#使用技術)
 - [機能](#機能)
     - [実装済み](#実装済み)
@@ -781,6 +782,10 @@ https://suzuki-test.xyz
     ```
 
 </details>
+
+# インフラ アーキテクチャ図
+
+![Conduit_architecture drawio (5)](https://github.com/suzuk12345/RealWorld_Conduit/assets/107597248/8fe3009e-ae02-4c6e-a0f4-9913894aeb9d)
 
 # 使用技術
 
