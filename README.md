@@ -261,7 +261,7 @@ https://suzuki-test.xyz
 <details>
 <summary>記事一覧取得</summary>
 
-`GET /api/articles/globalFeed
+`GET /api/articles/globalFeed`
 
 -   クエリパラメータ
 
