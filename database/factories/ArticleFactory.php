@@ -16,12 +16,12 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
-        $title = fake()->realText(64);
+        $title = fake()->text(64);
         return [
             'slug' => implode('-', explode(' ', $title)),
             'title' => $title,
-            'description' => fake()->realText(64),
-            'body' => fake()->realText(1024),
+            'description' => fake()->text(64),
+            'body' => fake()->text(1024),
             'user_id' => random_int(1, 2),
         ];
     }
